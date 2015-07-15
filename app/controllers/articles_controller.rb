@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-	http_basic_authenticate_with name: "usr", password: "secret", except: [:index, :show]
+	#http_basic_authenticate_with name: "usr", password: "secret", except: [:index, :show]
 
 	def new
 		@article = Article.new
@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params)
 
 		if @article.save
+			flash[:notice] = "Post successfully created"
 			redirect_to @article
 		else
 			render 'new'
